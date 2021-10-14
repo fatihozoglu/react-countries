@@ -1,16 +1,25 @@
-import Nav from './components/Nav';
-import Main from './components/Main';
-import { useContext } from 'react';
-import { ThemeContext } from './ThemeContext';
-import './App.css';
+import Nav from "./components/Nav";
+import Main from "./components/Main";
+import { useContext } from "react";
+import { ThemeContext } from "./ThemeContext";
+import { Switch, Route } from "react-router-dom";
+import Detail from "./components/Detail";
+import "./App.css";
 
 function App() {
-  const {theme} = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
 
   return (
     <div className={`"app" ${theme ? "app-dark" : "app-light"}`}>
       <Nav />
-      <Main />
+      <Switch>
+        <Route path="/:name">
+          <Detail />
+        </Route>
+        <Route path="/">
+          <Main />
+        </Route>
+      </Switch>
     </div>
   );
 }

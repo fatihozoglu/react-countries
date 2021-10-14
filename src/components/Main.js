@@ -2,13 +2,14 @@ import { useState, useEffect } from "react";
 import Card from "./Card";
 import { useContext } from "react";
 import { ThemeContext } from "../ThemeContext";
+import { Link, } from "react-router-dom";
 
 export default function Main() {
   const [data, setData] = useState();
   const [filter, setFilter] = useState("all");
   const [input, setInput] = useState("");
 
-  const {theme} = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     fetch("https://restcountries.com/v2/all")
@@ -24,11 +25,11 @@ export default function Main() {
           if (filter === "all") return item;
           return item.region === filter;
         })
-        .filter(item => {
-          if(input === "") return item;
+        .filter((item) => {
+          if (input === "") return item;
           return item.name.toLowerCase().includes(input.toLowerCase());
         })
-        .map((item) => <Card key={item.numericCode} data={item} />)
+        .map((item) => <Link style={{ color: 'inherit', textDecoration: 'inherit'}} to={`/${item.name}`}><Card key={item.numericCode} data={item} /></Link>)
     ) : (
       <div>Loading</div>
     );
@@ -42,28 +43,32 @@ export default function Main() {
     });
 
   let optionItems = options.map((item, index) => {
-    return <option key={index} value={item}>{item}</option>;
+    return (
+      <option key={index} value={item}>
+        {item}
+      </option>
+    );
   });
 
   return (
-    <main className="main">
-      <div className="input-container">
-        <input
-          className={theme ? undefined : "shadow"}
-          onChange={(e) => setInput(e.target.value)}
-          type="text"
-          placeholder="Search For a Country"
-        />
-        <select
-          onChange={(e) => setFilter(e.target.value)}
-          className={`filter ${theme ? undefined : "shadow"}`}
-          name="regions"
-        >
-          <option value="all">Filter By Region</option>
-          {optionItems}
-        </select>
-      </div>
-      <div className="cards-container">{cards}</div>
-    </main>
+      <main className="main">
+        <div className="input-container">
+          <input
+            className={theme ? undefined : "shadow"}
+            onChange={(e) => setInput(e.target.value)}
+            type="text"
+            placeholder="Search For a Country"
+          />
+          <select
+            onChange={(e) => setFilter(e.target.value)}
+            className={`filter ${theme ? undefined : "shadow"}`}
+            name="regions"
+          >
+            <option value="all">Filter By Region</option>
+            {optionItems}
+          </select>
+        </div>
+        <div className="cards-container">{cards}</div>
+      </main>
   );
 }

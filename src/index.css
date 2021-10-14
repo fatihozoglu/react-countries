@@ -101,10 +101,12 @@ input {
 
 .dark {
     background-color: hsl(209, 23%, 22%);
+    color:hsl(0, 0%, 95%);
 }
 
 .light {
     background-color: hsl(0, 0%, 95%);
+    color: hsl(200, 15%, 8%);
 }
 
 .shadow {
@@ -119,10 +121,80 @@ input {
 .country-info {
     height: 50%;
     padding: 10px 20px;
+    text-decoration: none;
 }
 
 .country-name {
+    display: block;
     font-size: 18px;
     font-weight: 800;
     margin-bottom: 10px;
+    min-width: 200px;
+}
+
+.detail {
+    width: 100vw;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    padding: 20px 100px;
+}
+
+.detail > button {
+    color: inherit;
+    width: 100px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.detail-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.detail-img {
+    height: auto;
+    max-width: 500px;
+}
+
+.detail-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.detail-name {
+    font-size: 24px;
+    font-weight: 900;
+}
+
+.detail-header {
+    width: 300px;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.borders {
+    display: inline-block;
+    padding: 5px 10px;
+    color: inherit;
+    margin-right: 3px;
+    margin-left: 5px;
+}
+
+.name {
+    font-size:24px;
+    font-weight: 900;
 }
