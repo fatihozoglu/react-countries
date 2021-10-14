@@ -1,8 +1,10 @@
-
+import { useContext } from "react";
+import { ThemeContext } from "../ThemeContext"
 
 export default function Card(props) {
+    const {theme} = useContext(ThemeContext);
     return (
-        <div className="card">
+        <div className={`card ${theme ? "dark" : "light shadow"}`}>
             <img className="flag-img" src={props.data.flag} alt="country flag" />
             <div className="country-info">
                 <p className="country-name">{props.data.name}</p>
