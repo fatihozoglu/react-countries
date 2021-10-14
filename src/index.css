@@ -67,6 +67,8 @@ input {
     height: 30%;
     padding: 20px;
     font-size: 16px;
+    border: none;
+    outline: none;
 }
 
 .filter {
@@ -74,6 +76,8 @@ input {
     height: 30%;
     font-size: 16px;
     padding: 0 20px;
+    border: none;
+    outline: none;
 }
 
 .cards-container {
@@ -81,7 +85,7 @@ input {
     display: grid;
     grid-template-columns: repeat(auto-fill, 230px);
     justify-content: space-between;
-    grid-gap: 40px;
+    grid-gap: 20px;
 }
 
 .card {
@@ -96,11 +100,11 @@ input {
 }
 
 .dark {
-    background-color: hsl(209, 23%, 22%)
+    background-color: hsl(209, 23%, 22%);
 }
 
 .light {
-    background-color: hsl(0, 0%, 95%)
+    background-color: hsl(0, 0%, 95%);
 }
 
 .shadow {

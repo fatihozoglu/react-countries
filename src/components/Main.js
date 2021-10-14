@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import Card from "./Card";
+import { useContext } from "react";
+import { ThemeContext } from "../ThemeContext";
 
 export default function Main() {
   const [data, setData] = useState();
   const [filter, setFilter] = useState("all");
+  const [input, setInput] = useState("");
 
-  console.log(filter);
+  const {theme} = useContext(ThemeContext);
 
   useEffect(() => {
     fetch("https://restcountries.com/v2/all")
@@ -21,6 +24,10 @@ export default function Main() {
           if (filter === "all") return item;
           return item.region === filter;
         })
+        .filter(item => {
+          if(input === "") return item;
+          return item.name.toLowerCase().includes(input.toLowerCase());
+        })
         .map((item) => <Card key={item.numericCode} data={item} />)
     ) : (
       <div>Loading</div>
@@ -34,17 +41,22 @@ export default function Main() {
       }
     });
 
-  let optionItems = options.map((item) => {
-    return <option value={item}>{item}</option>;
+  let optionItems = options.map((item, index) => {
+    return <option key={index} value={item}>{item}</option>;
   });
 
   return (
     <main className="main">
       <div className="input-container">
-        <input type="text" placeholder="Search For a Country" />
+        <input
+          className={theme ? undefined : "shadow"}
+          onChange={(e) => setInput(e.target.value)}
+          type="text"
+          placeholder="Search For a Country"
+        />
         <select
           onChange={(e) => setFilter(e.target.value)}
-          className="filter"
+          className={`filter ${theme ? undefined : "shadow"}`}
           name="regions"
         >
           <option value="all">Filter By Region</option>
