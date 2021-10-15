@@ -142,26 +142,34 @@ input {
 }
 
 .detail > button {
+    font-size: 18px;
     color: inherit;
-    width: 100px;
+    width: 120px;
     height: 50px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     border: none;
+    border-radius: 5px;
     outline: none;
     cursor: pointer;
 }
 
+.detail > button:hover {
+    background-color: hsl(208, 23%, 33%);
+}
+
 .detail-container {
     width: 100%;
+    min-height: 30vh;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 50px;
 }
 
 .detail-img {
+    width: 100%;
     height: auto;
-    max-width: 500px;
 }
 
 .detail-body {
@@ -172,29 +180,44 @@ input {
 }
 
 .detail-name {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 900;
 }
 
-.detail-header {
-    width: 300px;
-    height: 80%;
-    display: flex;
-    flex-direction: column;
-    gap:20px;
-    align-items: flex-start;
-    justify-content: flex-start;
+.detail-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 2vw;
+}
+
+.detail-info > * {
+    line-height: 30px;
 }
 
 .borders {
-    display: inline-block;
-    padding: 5px 10px;
+    padding: 5px 0;
     color: inherit;
-    margin-right: 3px;
-    margin-left: 5px;
 }
 
-.name {
-    font-size:24px;
-    font-weight: 900;
-}
+@media screen and (max-width: 977px) {
+    .cards-container {
+        padding: 20px 100px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 230px);
+        justify-content: center;
+        grid-gap: 20px;
+    }
+
+    .detail-container {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .detail-info {
+        display: grid;
+        grid-template-columns: 1fr;
+        row-gap: 0;
+    }
+  }

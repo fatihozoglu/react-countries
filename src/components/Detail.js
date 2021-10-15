@@ -29,9 +29,7 @@ function Detail() {
           alt={`${data[0].name} flag`}
         />
         <div className="detail-body">
-          <div className="detail-name">
-            <p >{data[0].name}</p>
-          </div>
+          <p className="detail-name">{data[0].name}</p>
           <div className="detail-info">
             <p>
               Native Name: <span>{data[0].nativeName}</span>
