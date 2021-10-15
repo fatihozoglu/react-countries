@@ -185,6 +185,8 @@ input {
 }
 
 .detail-info {
+    font-size: 16px;
+    font-weight: 600;
     display: grid;
     grid-template-columns: 1fr 1fr;
     row-gap: 2vw;
@@ -194,9 +196,19 @@ input {
     line-height: 30px;
 }
 
+.detail-borders {
+    font-size: 16px;
+    font-weight: 600;
+}
+
 .borders {
-    padding: 5px 0;
+    display: inline-block;
+    padding: 5px 10px;
     color: inherit;
+    margin-right: 3px;
+    margin-left: 3px;
+    margin-bottom: 5px;
+    border-radius: 5px;
 }
 
 @media screen and (max-width: 977px) {

@@ -13,7 +13,7 @@ function App() {
     <div className={`"app" ${theme ? "app-dark" : "app-light"}`}>
       <Nav />
       <Switch>
-        <Route path="/:name">
+        <Route path="/:code">
           <Detail />
         </Route>
         <Route path="/">

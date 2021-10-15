@@ -29,7 +29,7 @@ export default function Main() {
           if (input === "") return item;
           return item.name.toLowerCase().includes(input.toLowerCase());
         })
-        .map((item) => <Link style={{ color: 'inherit', textDecoration: 'inherit'}} to={`/${item.name}`}><Card key={item.numericCode} data={item} /></Link>)
+        .map((item) => <Link to={`/${item.alpha3Code}`} key={item.numericCode} style={{ color: 'inherit', textDecoration: 'inherit'}} ><Card data={item} /></Link>)
     ) : (
       <div>Loading</div>
     );

@@ -1,20 +1,20 @@
 import { useState, useEffect, useContext } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 import { MdArrowBack } from "react-icons/md";
 import { ThemeContext } from "../ThemeContext";
 
 function Detail() {
   const [data, setData] = useState();
-  const { name } = useParams();
+  const { code } = useParams();
   const { push } = useHistory();
   const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
-    fetch(`https://restcountries.com/v2/name/${name}`)
+    fetch(`https://restcountries.com/v2/alpha/${code}`)
       .then((res) => res.json())
       .then((res) => setData(res))
       .catch((err) => console.log(err.message));
-  }, [name]);
+  }, [code]);
 
   return data !== undefined ? (
     <div className="detail">
@@ -23,51 +23,49 @@ function Detail() {
         Go Back
       </button>
       <div className="detail-container">
-        <img
-          className="detail-img"
-          src={data[0].flag}
-          alt={`${data[0].name} flag`}
-        />
+        <img className="detail-img" src={data.flag} alt={`${data.name} flag`} />
         <div className="detail-body">
-          <p className="detail-name">{data[0].name}</p>
+          <p className="detail-name">{data.name}</p>
           <div className="detail-info">
             <p>
-              Native Name: <span>{data[0].nativeName}</span>
+              Native Name: <span>{data.nativeName}</span>
             </p>
             <p>
-              Population: <span>{data[0].population}</span>
+              Population: <span>{data.population}</span>
             </p>
             <p>
-              Region: <span>{data[0].region}</span>
+              Region: <span>{data.region}</span>
             </p>
             <p>
-              Sub Region: <span>{data[0].subregion}</span>
+              Sub Region: <span>{data.subregion}</span>
             </p>
             <p>
-              Capital: <span>{data[0].capital}</span>
+              Capital: <span>{data.capital}</span>
             </p>
             <p>
-              Topl Level Domain: <span>{data[0].topLevelDomain[0]}</span>
+              Topl Level Domain: <span>{data.topLevelDomain[0]}</span>
             </p>
             <p>
-              Currencies: <span>{data[0].currencies[0].name}</span>
+              Currencies: <span>{data.currencies[0].name}</span>
             </p>
             <p>
-              Languages: <span>{data[0].languages[0].name}</span>
+              Languages: <span>{data.languages[0].name}</span>
             </p>
           </div>
           <div className="detail-borders">
             Border Countries:
-            {data[0].borders
-              ? data[0].borders.map((item, index) => (
-                  <span
-                    className={`borders ${theme ? "dark" : "light"}`}
+            {data.borders
+              ? data.borders.map((item, index) => (
+                  <Link
+                    to={`/${item}`}
                     key={index}
+                    style={{ color: "inherit", textDecoration: "inherit" }}
+                    className={`borders ${theme ? "dark" : "light"}`}
                   >
-                    {item}
-                  </span>
+                    <span>{item}</span>
+                  </Link>
                 ))
-              : undefined}
+              : " -"}
           </div>
         </div>
       </div>
